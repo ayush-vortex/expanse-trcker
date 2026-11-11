@@ -1,6 +1,13 @@
 from database import create_connection
+import sys
 import pandas as pd
 import matplotlib.pyplot as plt
+
+# Windows consoles default to cp1252, which cannot encode the rupee sign (Rs).
+try:
+    sys.stdout.reconfigure(encoding='utf-8')
+except Exception:
+    pass
 
 def analyze():
     conn = create_connection()

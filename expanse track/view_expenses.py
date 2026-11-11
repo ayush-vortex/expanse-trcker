@@ -1,5 +1,13 @@
 from database import create_connection
+import sys
 import pandas as pd
+
+# Windows consoles default to cp1252, which cannot encode the rupee sign (Rs).
+# Reconfigure stdout to UTF-8 so printing never crashes on Windows.
+try:
+    sys.stdout.reconfigure(encoding='utf-8')
+except Exception:
+    pass
 
 def view_expenses():
     conn = create_connection()

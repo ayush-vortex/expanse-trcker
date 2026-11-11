@@ -31,6 +31,10 @@ date_range = st.sidebar.date_input(
 # Apply filters
 filtered_df = df[df['category'].isin(selected_categories)]
 
+# date_input may return a single date (not a tuple) when only one day is picked
+if not isinstance(date_range, (list, tuple)):
+    date_range = (date_range, date_range)
+
 if len(date_range) == 2:
     start_date, end_date = date_range
     filtered_df = filtered_df[
